@@ -1,8 +1,7 @@
-package mylog_test
+package logger
 
 import "testing"
 
 func TestSimpleHttpGet(t *testing.T) {
-	ge,err := SimpleHttpGet("https://www.liwenzhou.com/posts/Go/zap/")
 
 }
