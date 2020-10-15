@@ -54,3 +54,6 @@ func getEncoder() zapcore.Encoder {
 func Error(template string, args ...interface{}) {
 	sugarLogger.Errorf(template, args)
 }
+func Info(args ...interface{}) {
+	sugarLogger.Info(template, args)
+}
