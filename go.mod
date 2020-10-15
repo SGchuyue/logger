@@ -1,4 +1,4 @@
-module logger
+module github.com/SGchuyue/logger
 
 go 1.13
 
