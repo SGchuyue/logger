@@ -28,7 +28,7 @@ func main() {
 }
 ````
 3.使用
-> 
+> logger.Error("test error %s", "test")
 
 ----
 测试包的功能
@@ -45,3 +45,11 @@ func TestInitLogger(t *testing.T) {
 	//ok      logger/logger   0.593s
 }
 ````
+
+---
+时间可读性配置
+---
+*时间是以非人类可读的方式展示，例如1.572161051846623e+09*
+
+*日常时间格式以年月日展示*
+> encoderConfig.EncodeTime = zapcore.ISO8601TimeEncoder
