@@ -9,9 +9,13 @@
 
  example 使用方法：
 ------
-导入需要日志包初始化后即可使用
+下载包的依赖
+> go get "github.com/SGchuyue/logger/logger"
 
+导入日志包初始化后即可使用
 ````
+package main
+
 import (
 	"github.com/SGchuyue/logger/logger"
 )
@@ -23,6 +27,7 @@ func main() {
     // maxday 配置日志文件保留最大天数 int类型 （示例： 5天）
     // compress 配置文件是否进行压缩 bool类型 （fasle不压缩，ture压缩） 
     logger.InitLogger("./test.log",2,3,5,true)
+    // 使用
     logger.Error("error test")
     logger.Errorf("test errorf %s","test")
     logger.Debug("debug test")
