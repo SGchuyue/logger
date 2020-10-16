@@ -10,11 +10,6 @@ import (
 var sugarLogger *zap.SugaredLogger
 
 // InitLogger 初始化日志库的使用
-// filename 设置存入日志文件路径及名称 字符串类型
-// maxsize 配置文件大小 int类型 （单位为M）
-// maxbackups 配置旧文件保留个数 int类型
-// maxday 配置日志文件保留最大天数 int类型
-// compress 配置文件是否进行压缩 bool类型 （fasle不压缩，ture压缩）
 func InitLogger(filename string, maxsize, maxbackups, maxday int, compress bool) {
 	getLogWriter := &lumberjack.Logger{
 		Filename:   filename,   // 文件路径
