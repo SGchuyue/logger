@@ -25,11 +25,7 @@ func InitLogger(filename string, maxsize, maxbackups, maxday int, compress bool)
 	}
 	// 使用zapcore.AddSync()函数并且将打开的文件句柄传进去。
 	writeSyncer := zapcore.AddSync(getLogWriter)
-	//defer sugarLogger.Sync()
-	// 得到编码和调用者信息
 	encoder := getEncoder()
-	// 使用zap.New(…)方法来手动传递所有配置
-	// zapcore.Core需要三个配置——Encoder，WriteSyncer，LogLevel
 	core := zapcore.NewCore(encoder, writeSyncer, zapcore.DebugLevel)
 	logger := zap.New(core, zap.AddCaller())
 	// 调用主logger中的Sugar()方法来获取一个SugeredLogger
@@ -39,10 +35,8 @@ func InitLogger(filename string, maxsize, maxbackups, maxday int, compress bool)
 // 更改时间编码并添加调用者详细信息
 func getEncoder() zapcore.Encoder {
 	encoderConfig := zap.NewProductionEncoderConfig()
-	// 更改时间编码配置，以人类可读的方式展示
 	encoderConfig.EncodeTime = zapcore.ISO8601TimeEncoder
 	encoderConfig.EncodeLevel = zapcore.CapitalLevelEncoder
-	// 将JSON Encoder更改为普通的Log Encoder
 	return zapcore.NewConsoleEncoder(encoderConfig)
 }
 

@@ -1,18 +1,18 @@
- logger 是一个将日志分割、压缩、归档并写入指定文件的go包。
+ logger 是一个基于开源项目zap、zapcore日志包及Lumberjack切割包将日志分割、压缩并写入指定文件的封装go日志记录器。
 =====
 ### 此包提供了日志相关的五种常用功能：
-+ **filename** 设置文件的存储位置
-+ **maxsize** 设置切割文件的储存大小
-+ **maxbackups** 保留旧日志文件的最大个数
-+ **maxday** 保留旧日志文件的最大存留天数
-+ **compress** 是否进行归档压缩
++ 自定义文件存储位置，将其打印搭到文件中而非终端工作区。
++ 日志切割，根据工作需求自由设置文件的存储大小。
++ 日志存留，以文件个数和日期更迭选择日志文件的存留时间。
++ 日志压缩，对保留的日志文件压缩节省空间。
++ 可自由选择不同级别的日志打印。
 
  example 使用方法：
 ------
 下载包的依赖
-> go get "github.com/SGchuyue/logger/logger"
+>go get "github.com/SGchuyue/logger/logger"
 
-导入日志包初始化后即可使用
+导入日志包进行初始化后即可使用
 ````
 package main
 
@@ -26,8 +26,9 @@ func main() {
     // maxbackups 配置旧文件保留个数 int类型 （示例： 3个）
     // maxday 配置日志文件保留最大天数 int类型 （示例： 5天）
     // compress 配置文件是否进行压缩 bool类型 （fasle不压缩，ture压缩） 
+    // 对日志包的初始化
     logger.InitLogger("./test.log",2,3,5,true)
-    // 使用
+    // 对日志包的使用
     logger.Error("error test")
     logger.Errorf("test errorf %s","test")
     logger.Debug("debug test")
@@ -43,7 +44,7 @@ func main() {
 ---
 
 ````
-// 测试logger日志包的功能
+// 测试logger包的功能
 func TestInitLogger(t *testing.T) {
 	logger.InitLogger("test.log",2,3,5,true)
 	for i := 0; i < 50000; i++ {
@@ -57,5 +58,3 @@ func TestInitLogger(t *testing.T) {
 	}
 }
 ````
-日志等级相关
----
